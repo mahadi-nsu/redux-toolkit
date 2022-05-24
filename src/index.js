@@ -7,17 +7,22 @@ import reportWebVitals from "./reportWebVitals";
 // store setup
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
+import { productsApi } from "./features/productsApi";
 
 import productsReducer, { productFetch } from "./features/productSlice";
 
 const store = configureStore({
   reducer: {
     products: productsReducer,
+    [productsApi.reducerPath]: productsApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) => {
+    return getDefaultMiddleware().concat(productsApi.middleware);
   },
 });
 
 // dispatch
-store.dispatch(productFetch());
+// store.dispatch(productFetch());
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
