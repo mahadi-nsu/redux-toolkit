@@ -17,7 +17,7 @@ const store = configureStore({
 });
 
 // dispatch
-store.dispatch(productFetch());
+// store.dispatch(productFetch());
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
